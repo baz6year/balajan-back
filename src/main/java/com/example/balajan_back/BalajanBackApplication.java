@@ -10,4 +10,5 @@ public class BalajanBackApplication {
 		SpringApplication.run(BalajanBackApplication.class, args);
 	}
 
+
 }
