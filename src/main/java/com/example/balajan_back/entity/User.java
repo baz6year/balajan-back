@@ -23,7 +23,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String password; // хранится BCrypt-хеш!
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

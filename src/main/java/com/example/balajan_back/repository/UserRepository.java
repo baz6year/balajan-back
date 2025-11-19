@@ -1,4 +1,4 @@
-package repository;
+package com.example.balajan_back.repository;
 
 import com.example.balajan_back.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
