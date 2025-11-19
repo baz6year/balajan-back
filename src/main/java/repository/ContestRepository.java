@@ -1,4 +1,9 @@
 package repository;
 
-public interface ContestRepository {
+import com.example.balajan_back.entity.Contest;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ContestRepository extends JpaRepository<Contest, Integer> {
 }
