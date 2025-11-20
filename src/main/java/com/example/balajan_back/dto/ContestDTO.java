@@ -1,4 +1,22 @@
-package com.example.balajan_back.DTO;
+package com.example.balajan_back.dto;
 
-public class ContestsDTO {
+import lombok.*;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ContestDTO {
+    private Long id;
+    private String title;
+    private String slug;
+    private String excerpt;
+    private String imageUrl;
+    private String category;
+    private java.time.LocalDate startDate;
+    private java.time.LocalDate endDate;
+    private boolean isFeatured;
+    private String stages;
+    private String content;
 }
