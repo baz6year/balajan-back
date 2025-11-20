@@ -1,49 +1,39 @@
 package com.example.balajan_back.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "news")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String title;
 
-    @Lob
-    private String shortDescription;
-
-    @Lob
-    private String content;
-
-    @Column(length = 255)
-    private String imageUrl;
+    @Column(nullable = false, unique = true)
+    private String slug;
 
     @Column(name = "published_at")
     private OffsetDateTime publishedAt;
 
-    public News() {}
+    @Column(name = "image_url")
+    private String imageUrl;
 
-    // getters/setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    @Column(columnDefinition = "text")
+    private String excerpt;
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    @Column(columnDefinition = "text")
+    private String content;
 
-    public String getShortDescription() { return shortDescription; }
-    public void setShortDescription(String shortDescription) { this.shortDescription = shortDescription; }
-
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
-
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
-
-    public OffsetDateTime getPublishedAt() { return publishedAt; }
-    public void setPublishedAt(OffsetDateTime publishedAt) { this.publishedAt = publishedAt; }
 }
 
