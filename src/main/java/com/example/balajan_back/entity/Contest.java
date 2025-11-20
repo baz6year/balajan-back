@@ -1,61 +1,51 @@
 package com.example.balajan_back.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "contests")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Contest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String title;
 
-    @Lob
-    private String shortDescription;
+    @Column(nullable = false, unique = true)
+    private String slug;
 
-    @Lob
-    private String content;
+    @Column(columnDefinition = "text")
+    private String excerpt;
 
-    @Column(length = 255)
+    @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(length = 50)
-    private String category; // TEACHERS / CHILDREN / ALL
+    private String category; // TEACHER / KID / ALL
 
-    @Column(name = "event_date")
-    private LocalDate eventDate;
+    @Column(name = "start_date")
+    private java.time.LocalDate startDate;
+
+    @Column(name = "end_date")
+    private java.time.LocalDate endDate;
 
     @Column(name = "is_featured")
-    private boolean isFeatured = false;
+    private boolean isFeatured;
 
-    public Contest() {}
+    @Column(columnDefinition = "jsonb")
+    private String stages;
 
-    // getters/setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    @Column(columnDefinition = "text")
+    private String content;
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
 
-    public String getShortDescription() { return shortDescription; }
-    public void setShortDescription(String shortDescription) { this.shortDescription = shortDescription; }
-
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
-
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
-
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
-
-    public LocalDate getEventDate() { return eventDate; }
-    public void setEventDate(LocalDate eventDate) { this.eventDate = eventDate; }
-
-    public boolean isFeatured() { return isFeatured; }
-    public void setFeatured(boolean featured) { isFeatured = featured; }
 }
 
