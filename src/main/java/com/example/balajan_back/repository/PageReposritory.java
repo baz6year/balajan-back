@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 @Repository
-public interface PageReposritory extends JpaRepository<Page, Integer> {
+public interface PageReposritory extends JpaRepository<Page, Long> {
     Optional<Page> findBySlug(String slug);
 }
