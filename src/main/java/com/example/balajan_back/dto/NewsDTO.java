@@ -17,4 +17,12 @@ public class NewsDTO {
     private String imageUrl;
     private String excerpt;
     private String content;
+
+    public String getDate() {
+        return publishedAt != null
+                ? publishedAt.toLocalDate().toString()  // формат типа "2024-12-23"
+                : null;
+    }
 }
+
+
