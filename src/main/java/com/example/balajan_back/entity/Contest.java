@@ -2,8 +2,10 @@ package com.example.balajan_back.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "contests")
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Data
 public class Contest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +43,10 @@ public class Contest {
     @Column(name = "is_featured")
     private boolean isFeatured;
 
-    @Column(columnDefinition = "jsonb")
-    private String stages;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "stages", columnDefinition = "jsonb")
+    private List<Stage> stages;
+
 
     @Column(columnDefinition = "text")
     private String content;

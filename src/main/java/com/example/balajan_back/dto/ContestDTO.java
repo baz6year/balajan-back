@@ -1,6 +1,9 @@
 package com.example.balajan_back.dto;
 
+import com.example.balajan_back.entity.Stage;
 import lombok.*;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -17,6 +20,6 @@ public class ContestDTO {
     private java.time.LocalDate startDate;
     private java.time.LocalDate endDate;
     private boolean isFeatured;
-    private String stages;
+    private List<Stage> stages;
     private String content;
 }
