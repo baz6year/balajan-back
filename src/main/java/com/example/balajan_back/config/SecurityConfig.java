@@ -11,15 +11,20 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
-                .csrf(csrf -> csrf.disable()) // для простого API отключаем CSRF
+                .csrf(csrf -> csrf.disable())
+                .cors(Customizer.withDefaults()) // если у тебя есть CORS-конфиг — он подцепится
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").permitAll() // новости/конкурсы публичные
-                        .anyRequest().authenticated()           // остальное под защитой
+                        // 👉 пока ВСЕ api-ручки открыты, включая админские
+                        .requestMatchers("/api/**").permitAll()
+                        .anyRequest().permitAll()
                 )
-                .formLogin(Customizer.withDefaults());          // дефолтная форма логина
+                // отключаем стандартную форму логина и basic-auth,
+                // чтобы Spring не редиректил на /login
+                .formLogin(form -> form.disable())
+                .httpBasic(basic -> basic.disable());
 
         return http.build();
     }
+
 }
