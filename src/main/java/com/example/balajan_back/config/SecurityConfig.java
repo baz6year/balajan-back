@@ -26,7 +26,7 @@ public class SecurityConfig {
                                 "/api/news/**",
                                 "/api/contests/**"
                         ).permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN") // 👈 тут
+                        .requestMatchers("/api/admin/**").permitAll()
                         .anyRequest().permitAll()
                 )
                 // наш фильтр, который читает USER_ID из сессии
