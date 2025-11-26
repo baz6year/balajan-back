@@ -21,12 +21,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/api/news/**", "/api/contests/**").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll()
+                        .anyRequest().permitAll()   // 👈 ВРЕМЕННО разрешаем всё
                 )
-
                 .addFilterBefore(sessionAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable());
@@ -34,3 +30,4 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
