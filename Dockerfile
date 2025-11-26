@@ -4,7 +4,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN mvn -DskipTests package
+RUN mvn -DskipTests -Pproduction package
 
 FROM eclipse-temurin:22-jre
 WORKDIR /app
