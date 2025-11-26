@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()   // 👈 ВРЕМЕННО разрешаем всё
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(sessionAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(form -> form.disable())
@@ -30,4 +30,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-
