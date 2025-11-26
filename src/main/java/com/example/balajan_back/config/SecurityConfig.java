@@ -19,19 +19,15 @@ public class SecurityConfig {
 
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults()) // берёт настройки из CorsConfig
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/api/auth/login",
-                                "/api/news/**",
-                                "/api/contests/**"
-                        ).permitAll()
-                        .requestMatchers("/api/admin/**").permitAll()
+                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/news/**", "/api/contests/**").permitAll()
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
-                // наш фильтр, который читает USER_ID из сессии
+
                 .addFilterBefore(sessionAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                // отключаем формы Spring Security и basic-логин (мы логинимся через свой контроллер)
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable());
 
